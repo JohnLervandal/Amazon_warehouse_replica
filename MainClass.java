@@ -6,6 +6,7 @@ public class MainClass {
 	int itemsStowed; //# of items user stowed
 	
 	public void main(String[] args) {
+		@SuppressWarnings("resource")
 		Scanner console = new Scanner(System.in);
 		System.out.println("Welcome To Amazon! Please enter Your User Name "
 				+ "Displayed On Your Badge!");
@@ -29,9 +30,38 @@ public class MainClass {
 	}
 	
 	public void Inbound() {
-		//For this assume there's no PO number for simplicity
-		//this will simply ask the employee what items they are adding, 
-		//the expiration date of that item and the quantity and into which bin
+		String work = "Y";
+		System.out.println("Welcome to Inbound! This is where we take items sent to the Warehouse and place them in Bins");
+		@SuppressWarnings("resource")
+		Scanner inbound = new Scanner(System.in);
+		while(work.equals("Y"));
+			System.out.println("Please enter the Bin you want to place the item.");
+			String binName = inbound.nextLine();
+			Map<String, Item> curBin = Bins.SpecBin(binName);
+			System.out.println("Enter the name of the item.");
+			String itemName = inbound.next();
+			System.out.println("Enter the quantity of the item.");
+			int itemQuantity = inbound.nextInt();
+			System.out.println("Enter the Month the Item(s) expire.");
+			int monthExpire = inbound.nextInt();
+			System.out.println("Enter the Day of the Month the Item(s) expire.");
+			int dayExpire = inbound.nextInt();
+			System.out.println("Enter the Year the Item(s) expire.");
+			int yearExpire = inbound.nextInt();
+		
+			Date curDate = new Date(monthExpire, dayExpire, yearExpire);
+			Item curItem = new Item(itemName, itemQuantity, curDate);
+			curBin.put(itemName, curItem);
+			System.out.println("You sucessfully added the item: " + itemName + " with a Quantity of " + itemQuantity + "that is set to"
+				+ "expire on " + curDate.toString());
+			System.out.println("You would like to add another item?, If Yes enter 'Y' if No, enter 'N");
+			work = inbound.nextLine();
+		
+
+		
+
+
+		
 		
 	}
 	

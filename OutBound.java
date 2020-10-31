@@ -1,4 +1,3 @@
-import java.util.*;
 public class OutBound {
 	int speed;
 	int numberOfItemsPicked;

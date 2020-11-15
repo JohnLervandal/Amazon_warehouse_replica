@@ -47,4 +47,14 @@ public static Map<String, Item> SpecBin(String name) {
 	}
 	throw new NoSuchElementException("Bin wasn't found.");
 	}
+
+public static Map<String,Item> findItem(Item q) {
+	for(int i=0; i<locations.size(); i++) {
+		Map<String,Item> temp = locations.get(i);
+		if (temp.containsValue(q) == true) {
+			return temp;
+		}
+	}
+	return null;
+}
 }
